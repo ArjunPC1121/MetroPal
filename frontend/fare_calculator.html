@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchable Dropdown List</title>
+    <link rel="stylesheet" href="../css/styles_fare_calculator.css">
+</head>
+<body>
+
+<div class="dropdown-container">
+    <h2>Enter Source Station</h2>
+    <input type="text" id="sourceDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('source')" onclick="showDropdown('source')" autocomplete="off">
+    <div id="sourceDropdownList" class="dropdown-list">
+        
+    </div>
+</div>
+<div class="dropdown-container2">
+    <h2>Enter Destination Station</h2>
+    <input type="text" id="destinationDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('destination')" onclick="showDropdown('destination')" autocomplete="off">
+    <div id="destinationDropdownList" class="dropdown-list">
+        
+    </div>
+</div>
+<div class="button-container">
+    <button class="fare-button" onclick=fareDisplay()>Check fare</button>
+</div>
+<h2 id="fareCalculated"></h2>
+<script src="../js/fare_calculator.js"></script>
+
+</body>
+</html>

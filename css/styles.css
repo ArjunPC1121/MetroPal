@@ -15,17 +15,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
 /* Header styling */
-header {
+header{
     text-align: center;
     margin: 50px 0 20px;
     animation: fadeIn 1s ease-in-out;
 }
-
+nav{
+    animation: fadeIn 1s ease-in-out;
+}
 header h1 {
     font-size: 3rem;
     color: #ffcf33; /* Vibrant yellow color */
@@ -56,8 +59,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #ffcf33;
+    background-color: #ffffff;
     transform: scale(1.1);
+    color: #2e8ece;
 }
 
 /* Main content styling */
@@ -68,6 +72,10 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: slideUp 1s ease-in-out;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 main h2 {
