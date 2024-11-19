@@ -1,6 +1,7 @@
 import os
-from flask import Flask
+from flask import Flask, send_from_directory
 from . import api
+
 
 def create_app() -> Flask:
     app: Flask = Flask(__name__, instance_relative_config=True)
@@ -13,7 +14,7 @@ def create_app() -> Flask:
 
     @app.route("/")
     def index():
-        return "Index page"
-    
+        return send_from_directory(os.path.join(app.root_path, "static"), "index.html")
+
     app.register_blueprint(api.bp)
     return app
