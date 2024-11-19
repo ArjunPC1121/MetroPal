@@ -14,7 +14,6 @@ stations = [
         "color_code": "purple",
     },
     {
-        "vSDOCID": 62,
         "vStationCode": "KDGD",
         "vStationName": "Kadugodi Tree Park",
         "vStationNameK": "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್\n",
