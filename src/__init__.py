@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory,render_template
 from . import api
 
 
@@ -16,5 +16,10 @@ def create_app() -> Flask:
     def index():
         return send_from_directory(os.path.join(app.root_path, "static"), "index.html")
 
+    @app.route("/station")
+    def station():
+        return render_template("station.html")
     app.register_blueprint(api.bp)
     return app
+
+    

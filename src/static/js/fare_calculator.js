@@ -69,3 +69,6 @@ function fareDisplay(){
 }
 //document.getElementById("dropdownInput").addEventListener("click",showDropdown)
 //document.getElementById("dropdownInput").addEventListener("keyup",filterList)
+function stationDisplay(){
+    window.location.href="/station"
+}

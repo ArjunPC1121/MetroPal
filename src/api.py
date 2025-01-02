@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import request, jsonify
+from flask import request, jsonify,render_template
 from .db import get_all_stations, get_station_detailed, get_fare
 
 bp = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -52,3 +52,7 @@ def get_fare_details():
             400,
         )
     return {"status": "success", "fare": fare}
+
+@bp.route("/station")
+def station():
+    return render_template("station.html")
