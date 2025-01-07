@@ -1,27 +1,15 @@
 from typing import List
+import os
+import json
 
-stations = [
-    {
-        "vStationCode": "WHTM",
-        "vStationName": "Whitefield",
-        "vStationNameK": "ವೈಟ್‌ಫೀಲ್ಡ್\r\n",
-        "color_code": "purple",
-    },
-    {
-        "vStationCode": "UWVL",
-        "vStationName": "Channasandra",
-        "vStationNameK": "ಚನ್ನಸಂದ್ರ\r\n",
-        "color_code": "purple",
-    },
-    {
-        "vStationCode": "KDGD",
-        "vStationName": "Kadugodi Tree Park",
-        "vStationNameK": "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್\n",
-        "color_code": "purple",
-    },
-]
+with open('data/stations_list.json', 'r') as stations_file:
+    stations = json.load(stations_file)
+    stations = sorted(stations, key=lambda d: d['vStationName'])
 
-station_codes = {"WHTM", "UWVL", "KDGD"}
+station_codes = {station['vStationCode'] for station in stations}
+
+with open('data/fare_details.json', 'r') as fare_file:
+    fares = json.load(fare_file)
 
 
 def get_all_stations() -> List[dict]:
@@ -49,4 +37,11 @@ def get_fare(from_station_code: str, to_station_code: str) -> float | None:
     if not (from_station_code in station_codes and to_station_code in station_codes):
         return None
     
-    return 20
+    if from_station_code == to_station_code:
+        return 0
+    
+    try:
+        return fares[from_station_code][to_station_code]
+    except:
+        return fares[to_station_code][from_station_code]
+
