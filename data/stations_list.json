@@ -286,19 +286,6 @@
             "color_code": "purple"
         },
         {
-            "vSDOCID": 10,
-            "vStationCode": "KGWA",
-            "vStationName": "Nadaprabhu Kempegowda Station, Majestic",
-            "vStationNameK": "ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ, ಮೆಜೆಸ್ಟಿಕ್\n",
-            "LineID": 1,
-            "stationOrder": 123,
-            "Is_Active": 1,
-            "Created": "0000-00-00 00:00:00",
-            "eng_linename": "PURPLE LINE",
-            "kan_linename": "ನೇರಳೆ ಮಾರ್ಗ",
-            "color_code": "purple"
-        },
-        {
             "vSDOCID": 11,
             "vStationCode": "BRCS",
             "vStationName": "Krantivira Sangolli Rayanna Railway Station",
