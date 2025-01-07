@@ -1,74 +1,102 @@
-const metroStations = [
-    "Kengeri", "Kengeri Bus Terminal", "Jnana Bharathi", "Rajarajeshwari Nagar", "Nayandahalli", 
-    "Mysore Road", "Attiguppe", "Deepanjali Nagar", "Vijayanagar", "Hosahalli", "Magadi Road", 
-    "Kempegowda Station, Majestic", "City Railway Station", "Sir M Visvesvaraya Station, Central College", 
-    "Dr. B R Ambedkar Stn., Vidhana Soudha", "Cubbon Park", "Mahatma Gandhi Road", "Trinity", "Halasuru", 
-    "Indiranagar", "Swami Vivekananda Road", "Baiyappanahalli", "Nagasandra", "Dasarahalli", 
-    "Jalahalli", "Peenya Industry", "Peenya", "Goraguntepalya", "Yeshwanthpur Industry", "Yeshwanthpur", 
-    "Sandal Soap Factory", "Mahalakshmi", "Rajajinagar", "Mahakavi Kuvempu Road", "Srirampura", 
-    "Mantri Square Sampige Road", "Chickpete", "Krishna Rajendra Market", "National College", 
-    "Lalbagh", "South End Circle", "Jayanagar", "Rashtreeya Vidyalaya Road", "Banashankari", 
-    "JP Nagar", "Yelachenahalli", "Konanakunte Cross", "Doddakallasandra", "Vajarahalli", 
-    "Thalaghattapura", "Silk Institute"
-];
-metroStations.sort();
+let metroStations = []
+function populateDropdown(inputType, metroStations) {
+    const list = document.getElementById(inputType + "DropdownList")
+    list.innerHTML = '';
 
-function populateDropdown(inputType){
-    const list = document.getElementById(inputType+"DropdownList")
-    list.innerHTML='';
-
-    for(let i=0;i<metroStations.length;i++){
+    for (let i = 0; i < metroStations.length; i++) {
         const item = document.createElement("div")
-        item.textContent=metroStations[i];
-        item.onclick= function() {
-            document.getElementById(inputType+"DropdownInput").value=metroStations[i];
-            list.style.display="none";
+        item.textContent = metroStations[i].vStationName;
+        item.onclick = function () {
+            document.getElementById(inputType + "DropdownInput").value = metroStations[i].vStationName;
+            list.style.display = "none";
         };
         list.appendChild(item);
     }
 }
-function showDropdown(inputType){
-    document.getElementById(inputType+"DropdownList").style.display="block";
+function showDropdown(inputType) {
+    document.getElementById(inputType + "DropdownList").style.display = "block";
     //event.stopPropagation();
 }
 
-function filterList(inputType){
-    const input = document.getElementById(inputType+"DropdownInput").value.toLowerCase();
-    const items = document.querySelectorAll("#"+inputType+"DropdownList div");
-    for(let i=0;i<items.length;i++)
-    {
+function filterList(inputType) {
+    const input = document.getElementById(inputType + "DropdownInput").value.toLowerCase();
+    const items = document.querySelectorAll("#" + inputType + "DropdownList div");
+    for (let i = 0; i < items.length; i++) {
         const value = items[i].textContent.toLowerCase();
-        if(value.includes(input)){
-            items[i].style.display="block";
+        if (value.includes(input)) {
+            items[i].style.display = "block";
         }
-        else{
-            items[i].style.display="none";
+        else {
+            items[i].style.display = "none";
         }
     }
 }
-populateDropdown('source');
-populateDropdown('destination');
-document.addEventListener("click",function(event){
+document.addEventListener("DOMContentLoaded", function () {
+    console.log('Getting stations list')
+    fetch('/api/v1/stations')
+        .then(response => {
+            if (!response.ok)
+                throw new Error(`Got response ${response.status} from server`)
+            return response.json()
+        })
+        .then(json => {
+            populateDropdown('source', json);
+            populateDropdown('destination', json);
+            metroStations = json
+        })
+        .catch(err => {
+            alert(`Error while getting stations list ${err}`)
+        })
+});
+
+document.addEventListener("click", function (event) {
     const list_area = document.querySelector(".dropdown-container");
     const list_area2 = document.querySelector(".dropdown-container2");
-    
+
     //const input = document.getElementById("dropdownInput");
-    if(!list_area.contains(event.target))
-    {
-        document.getElementById("sourceDropdownList").style.display="none";
+    if (!list_area.contains(event.target)) {
+        document.getElementById("sourceDropdownList").style.display = "none";
     }
-    if(!list_area2.contains(event.target))
-    {
-        document.getElementById("destinationDropdownList").style.display="none";
+    if (!list_area2.contains(event.target)) {
+        document.getElementById("destinationDropdownList").style.display = "none";
     }
-    
+
 });
-function fareDisplay(){
+function fareDisplay() {
+    const sourceStation = document.getElementById("sourceDropdownInput").value;
+    const destinationStation = document.getElementById("destinationDropdownInput").value;
+
     const displayArea = document.getElementById("fareCalculated");
-    displayArea.innerHTML='Fare = x';
+    if (sourceStation && destinationStation) {
+        const srcStation = metroStations.filter(station => station.vStationName === sourceStation)
+        const dstStation = metroStations.filter(station => station.vStationName === destinationStation)
+        if (srcStation.length == 0 || dstStation.length == 0) {
+            displayArea.innerHTML = 'Source or destination station does not exist';
+        } else {
+            const srcStationCode = srcStation[0].vStationCode
+            const dstStationCode = dstStation[0].vStationCode
+            fetch(`/api/v1/fare?from=${srcStationCode}&to=${dstStationCode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Got response ${response.status} from server`)
+                    }
+                    return response.json()
+                })
+                .then(json => {
+                    displayArea.innerHTML = `Fare: Rs. ${json['fare']}`
+                })
+                .catch(err => {
+                    displayArea.innerHTML = 'Error while getting fare details from server'
+                    console.log(err)
+                })
+        }
+    } else {
+        displayArea.innerHTML = 'Please select both source and destination stations.';
+    }
+
 }
 //document.getElementById("dropdownInput").addEventListener("click",showDropdown)
 //document.getElementById("dropdownInput").addEventListener("keyup",filterList)
-function stationDisplay(){
-    window.location.href="/station"
+function stationDisplay() {
+    window.location.href = "/station"
 }

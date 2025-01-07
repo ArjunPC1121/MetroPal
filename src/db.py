@@ -2,20 +2,20 @@ from typing import List
 
 stations = [
     {
-        "vStationCode": "WHTM",
         "vStationName": "Whitefield",
+        "vStationCode": "WHTM",
         "vStationNameK": "ವೈಟ್‌ಫೀಲ್ಡ್\r\n",
         "color_code": "purple",
     },
     {
-        "vStationCode": "UWVL",
         "vStationName": "Channasandra",
+        "vStationCode": "UWVL",
         "vStationNameK": "ಚನ್ನಸಂದ್ರ\r\n",
         "color_code": "purple",
     },
     {
-        "vStationCode": "KDGD",
         "vStationName": "Kadugodi Tree Park",
+        "vStationCode": "KDGD",
         "vStationNameK": "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್\n",
         "color_code": "purple",
     },
