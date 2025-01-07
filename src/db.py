@@ -2,7 +2,7 @@ from typing import List
 import os
 import json
 
-with open('data/stations_list.json', 'r') as stations_file:
+with open('data/stations_list.json', 'r', encoding='utf-8') as stations_file:
     stations = json.load(stations_file)
     stations = sorted(stations, key=lambda d: d['vStationName'])
 
