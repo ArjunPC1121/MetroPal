@@ -6,6 +6,14 @@ function populateDropdown(inputType, metroStations) {
     for (let i = 0; i < metroStations.length; i++) {
         const item = document.createElement("div")
         item.textContent = metroStations[i].vStationName;
+        if(metroStations[i].LineID == "1")
+        {
+            item.style.backgroundColor="purple"
+        }
+        else
+        {
+            item.style.backgroundColor="green"
+        }
         item.onclick = function () {
             document.getElementById(inputType + "DropdownInput").value = metroStations[i].vStationName;
             list.style.display = "none";
