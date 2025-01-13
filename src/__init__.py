@@ -19,7 +19,14 @@ def create_app() -> Flask:
     @app.route("/station")
     def station():
         return render_template("station.html")
+    
+    @app.route("/metromap")
+    def metromap():
+        return render_template("metromap.html")
+    
     app.register_blueprint(api.bp)
+    
+    
     return app
 
     
