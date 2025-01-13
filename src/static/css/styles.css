@@ -122,6 +122,104 @@ footer {
         margin: 10px 0;
     }
 }
+
+/* Specific styling for fare_calculator.html */
+
+/* Style for line selection form */
+.line-selection-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.line-selection-form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.line-selection-form select {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.line-selection-form select:focus {
+    border-color: #ffcf33;
+}
+
+/* Styling for dropdown inputs */
+.dropdown-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.dropdown-input:focus {
+    border-color: #ffcf33;
+}
+
+/* Styling for dropdown list */
+.dropdown-list {
+    width: 100%;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-list div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-list div:hover {
+    background-color: #444;
+}
+
+/* For fare calculator button */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.fare-button {
+    background-color: #ffcf33;
+    color: #1e3c72;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.fare-button:hover {
+    background-color: #f39c12;
+}
+
+/* Style for fare display */
+#fareCalculated {
+    color: #ffcf33;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+/* Full page image */
 .full-page-image {
     width: 100%; /* Ensures the image spans the full width of the container */
     height: auto; /* Maintains the aspect ratio */
@@ -136,5 +234,13 @@ footer {
 @media (max-width: 768px) {
     .full-page-image {
         max-width: 90%; /* Makes the image smaller on mobile screens */
+    }
+
+    .line-selection-form {
+        width: 100%;
+    }
+
+    .dropdown-input, .fare-button {
+        width: 100%;
     }
 }

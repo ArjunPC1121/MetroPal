@@ -7,26 +7,41 @@
     <link rel="stylesheet" href="/static/css/styles_fare_calculator.css">
 </head>
 <body>
+    <form class="line-selection-form">
+        <label for="line">Choose metro line:</label>
+        <select id="sourceLine" name="sourceLine">
+            <option value="all">All</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+        </select>
+    </form>
 
-<div class="dropdown-container">
-    <h2>Enter Source Station</h2>
-    <input type="text" id="sourceDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('source')" onclick="showDropdown('source')" autocomplete="off">
-    <div id="sourceDropdownList" class="dropdown-list">
-        
+    <div class="dropdown-container">
+        <h2>Enter Source Station</h2>
+        <input type="text" id="sourceDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('source')" onclick="showDropdown('source')" autocomplete="off">
+        <div id="sourceDropdownList" class="dropdown-list"></div>
     </div>
-</div>
-<div class="dropdown-container2">
-    <h2>Enter Destination Station</h2>
-    <input type="text" id="destinationDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('destination')" onclick="showDropdown('destination')" autocomplete="off">
-    <div id="destinationDropdownList" class="dropdown-list">
-        
-    </div>
-</div>
-<div class="button-container">
-    <button class="fare-button" onclick=fareDisplay()>Check fare</button>
-</div>
-<h2 id="fareCalculated"></h2>
-<script src="/static/js/fare_calculator.js"></script>
 
+    <form class="line-selection-form">
+        <label for="line">Choose metro line:</label>
+        <select id="destinationLine" name="destinationLine">
+            <option value="all">All</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+        </select>
+    </form>
+
+    <div class="dropdown-container2">
+        <h2>Enter Destination Station</h2>
+        <input type="text" id="destinationDropdownInput" class="dropdown-input" placeholder="Type to search metro station..." onkeyup="filterList('destination')" onclick="showDropdown('destination')" autocomplete="off">
+        <div id="destinationDropdownList" class="dropdown-list"></div>
+    </div>
+
+    <div class="button-container">
+        <button class="fare-button" onclick="fareDisplay()">Check fare</button>
+    </div>
+    <h2 id="fareCalculated"></h2>
+
+    <script src="/static/js/fare_calculator.js"></script>
 </body>
 </html>
